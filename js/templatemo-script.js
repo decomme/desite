@@ -1,18 +1,37 @@
-$(function() {
-    $(".navbar-toggler").on("click", function(e) {
-        $(".tm-header").toggleClass("show");
+// js/templatemo-script.js
+$(function () {
+    var $header   = $('.tm-header');        // Sidebar
+    var $toggler  = $('.navbar-toggler');   // Menü butonu
+    var $navLinks = $('#tm-nav .tm-nav-link');
+    var $body     = $('body');
+
+    // 1) Butona tıklayınca menüyü aç/kapat
+    $toggler.on('click', function (e) {
+        e.preventDefault();
         e.stopPropagation();
-      });
-    
-      $("html").click(function(e) {
-        var header = document.getElementById("tm-header");
-    
-        if (!header.contains(e.target)) {
-          $(".tm-header").removeClass("show");
+
+        // Mobil için: .show class'ı (zaten CSS'te var)
+        $header.toggleClass('show');
+
+        // Desktop için: body'ye menu-collapsed class'ı
+        $body.toggleClass('menu-collapsed');
+    });
+
+    // 2) Menü linkine tıklanınca menüyü kapat
+    $navLinks.on('click', function () {
+        $header.removeClass('show');          // mobil
+        $body.addClass('menu-collapsed');     // desktop: kapalı hale getir
+    });
+
+    // 3) Header ve butonun dışına tıklayınca menüyü kapat
+    $(document).on('click', function (e) {
+        var $target = $(e.target);
+
+        if (!$target.closest('.tm-header').length &&
+            !$target.closest('.navbar-toggler').length) {
+
+            $header.removeClass('show');      // mobil
+            $body.addClass('menu-collapsed'); // desktop
         }
-      });
-    
-      $("#tm-nav .nav-link").click(function(e) {
-        $(".tm-header").removeClass("show");
-      });
+    });
 });

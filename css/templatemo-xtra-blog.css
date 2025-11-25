@@ -196,9 +196,18 @@ ul {
 }
 
 .navbar-toggler {
-    display: none;
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(56, 204, 204, 0.75);
+    color: white;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    border-radius: 0;
+    z-index: 101;
+    border: none;
 }
-
 .tm-search-form {
     display: flex;
     align-items: center;
@@ -646,7 +655,7 @@ a:hover figcaption {
 }
 
 /* Hide sidebar */
-@media (max-width: 991px) {
+
     .tm-header {
         width: 320px;
         left: -320px;
@@ -710,7 +719,41 @@ a:hover figcaption {
     .tm-post-full {
         max-width: none;
     }
+/* ============================
+   DESKTOP MENÜ (>= 992px)
+   ============================ */
+@media (min-width: 992px) {
+
+    /* Sidebar'ın normal açık hali */
+    .tm-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 320px;               /* Sidebar genişliği */
+        z-index: 100;
+        /* İstersen şunu da ekle görünür olsun diye:
+        background-color: #111827;
+        */
+        transition: left 0.3s ease;
+    }
+
+    /* İçerik: sidebar açıkken yana kayık */
+    .tm-main {
+        margin-left: 320px;         /* Sidebar genişliği kadar boşluk */
+        transition: margin-left 0.3s ease;
+    }
+
+    /* Menü KAPALI iken (butona bastıktan sonra)  */
+    body.menu-collapsed .tm-header {
+        left: -320px;               /* Sidebar'ı ekran dışına itiyoruz */
+    }
+
+    body.menu-collapsed .tm-main {
+        margin-left: 0;             /* İçerik tam genişlik */
+    }
 }
+
 
 @media (max-width: 767px) {
     .form-inline .form-control.tm-search-input {
