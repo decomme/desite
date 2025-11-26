@@ -2,8 +2,10 @@
 
 /* Layout değişkenleri */
 :root {
-    --sidebar-width: 320px;      /* Sidebar açıkken genişlik */
-    --sidebar-collapsed: 60px;   /* Menü kapalıyken solda bırakılacak alan (hamburger için) */
+    --sidebar-width: 320px;
+    /* Sidebar açıkken genişlik */
+    --sidebar-collapsed: 60px;
+    /* Menü kapalıyken solda bırakılacak alan (hamburger için) */
 }
 
 html {
@@ -48,7 +50,8 @@ hr {
     color: white;
     position: fixed;
     top: 0;
-    left: -320px; /* Varsayılan: mobilde gizli */
+    left: -320px;
+    /* Varsayılan: mobilde gizli */
     bottom: 0;
     z-index: 100;
     width: 320px;
@@ -76,11 +79,13 @@ hr {
 }
 
 .tm-site-logo {
-    width: 200px;          /* Yuvarlak boyutu – istersen 120 yaparsın */
+    width: 200px;
+    /* Yuvarlak boyutu – istersen 120 yaparsın */
     height: 200px;
     border-radius: 50%;
     background-color: #ffffff;
-    overflow: hidden;      /* Dışarı taşanı kes, yuvarlak içinde kırp */
+    overflow: hidden;
+    /* Dışarı taşanı kes, yuvarlak içinde kırp */
     display: block;
 }
 
@@ -92,7 +97,8 @@ hr {
 .tm-site-logo img {
     width: 100%;
     height: 100%;
-    object-fit: cover;   /* Ne boyutta olursa olsun ortalanıp kırpılsın */
+    object-fit: cover;
+    /* Ne boyutta olursa olsun ortalanıp kırpılsın */
     display: block;
 }
 
@@ -107,11 +113,13 @@ hr {
 .tm-post {
     max-width: 470px;
 }
+
 /* Sadece post listesini grid yapıyoruz */
 .tm-row.tm-row-posts {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 30px; /* Kartlar arası boşluk */
+    gap: 30px;
+    /* Kartlar arası boşluk */
     width: 100%;
 }
 
@@ -228,7 +236,7 @@ ul {
     color: #0A66C2;
 }
 
-/* Hamburger buton – temel konum ve boyut */
+/* HAMBURGER BUTON – TÜM EKRANLARDA TEMEL STİL */
 .navbar-toggler {
     display: block;
     position: fixed;
@@ -239,27 +247,49 @@ ul {
     border-radius: 0;
     z-index: 101;
     transition: all 0.3s ease;
+
+    /* RENKLER */
+    background-color: rgb(51, 51, 51) !important;  /* MENÜ AÇIKKEN SİYAH */
+    color: #ffffff !important;                     /* İKON BEYAZ */
 }
 
-/* MENÜ AÇIKKEN (varsayılan durum) */
-.navbar-toggler {
-    background-color: rgb(51, 51, 51);  /* BUTON SİYAH */
-    color: #ffffff;                     /* İKON BEYAZ */
-}
-
+/* HOVER – MENÜ AÇIKKEN */
 .navbar-toggler:hover {
-    background-color: #ffffff;          /* HOVER'DA BEYAZ */
-    color: rgb(51, 51, 51);             /* İKON SİYAH */
+    background-color: #ffffff !important;          /* HOVER’DA BEYAZ */
+    color: rgb(51, 51, 51) !important;             /* İKON SİYAH */
 }
 
 /* MENÜ KAPALIYKEN (body.menu-collapsed varsa) */
 body.menu-collapsed .navbar-toggler {
-    background-color: #ffffff;          /* BUTON BEYAZ */
-    color: rgb(51, 51, 51);             /* İKON SİYAH */
+    background-color: #ffffff !important;          /* BUTON BEYAZ */
+    color: rgb(51, 51, 51) !important;             /* İKON SİYAH */
+}
+
+/* HOVER – MENÜ KAPALIYKEN */
+body.menu-collapsed .navbar-toggler:hover {
+    background-color: rgb(51, 51, 51) !important;  /* HOVER’DA SİYAH */
+    color: #ffffff !important;                     /* İKON BEYAZ */
+}
+
+
+.navbar-toggler:hover {
+    background-color: #ffffff;
+    /* HOVER'DA BEYAZ */
+    color: rgb(51, 51, 51);
+    /* İKON SİYAH */
+}
+
+/* MENÜ KAPALIYKEN (body.menu-collapsed varsa) */
+body.menu-collapsed .navbar-toggler {
+    background-color: #ffffff;
+    /* BUTON BEYAZ */
+    color: rgb(51, 51, 51);
+    /* İKON SİYAH */
 }
 
 body.menu-collapsed .navbar-toggler:hover {
-    background-color: rgb(51, 51, 51);  /* HOVER'DA SİYAH */
+    background-color: rgb(51, 51, 51);
+    /* HOVER'DA SİYAH */
     color: #ffffff;
 }
 
@@ -670,7 +700,8 @@ a:hover figcaption {
 /* ====== HIDE SIDEBAR (MOBİL) ====== */
 
 .tm-header.show {
-    left: 0; /* Mobilde .show gelince sidebar ekrana giriyor */
+    left: 0;
+    /* Mobilde .show gelince sidebar ekrana giriyor */
 }
 
 .tm-header-wrapper {
@@ -744,14 +775,16 @@ a:hover figcaption {
 
     /* Hamburger buton konumu (sidebar içi) */
     .navbar-toggler {
-        left: 260px; /* 320 yerine 260: sidebar içinde */
+        left: 260px;
+        /* 320 yerine 260: sidebar içinde */
         top: 15px;
         z-index: 1001;
         transition: left 0.3s ease;
     }
 
     body.menu-collapsed .navbar-toggler {
-        left: 15px; /* Menü kapalıyken ekranın solunda */
+        left: 15px;
+        /* Menü kapalıyken ekranın solunda */
     }
 }
 
@@ -901,27 +934,5 @@ a:hover figcaption {
 @media (max-width: 380px) {
     .tm-person img {
         max-width: 120px;
-    }
-}
-/* =====================
-   MOBİLDE BUTON RENKLERİ
-   ===================== */
-@media (max-width: 991px) {
-
-    /* Mobilde varsayılan (menü kapalı) */
-    body.menu-collapsed .navbar-toggler {
-        background-color: rgb(51, 51, 51) !important; /* SİYAH */
-        color: white !important;                      /* BEYAZ İKON */
-    }
-
-    body.menu-collapsed .navbar-toggler:hover {
-        background-color: white !important;           /* HOVER BEYAZ */
-        color: rgb(51, 51, 51) !important;            /* SİYAH İKON */
-    }
-
-    /* Menü mobilde açılınca (.tm-header.show) */
-    .tm-header.show ~ .navbar-toggler,
-    .tm-header.show + .navbar-toggler {
-        background-color: white !important;
     }
 }
