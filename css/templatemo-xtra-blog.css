@@ -76,17 +76,24 @@ hr {
 }
 
 .tm-site-logo {
-    width: 75px;
-    height: 75px;
+    width: 200px;          /* Yuvarlak boyutu – istersen 120 yaparsın */
+    height: 200px;
     border-radius: 50%;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: #ffffff;
+    overflow: hidden;      /* Dışarı taşanı kes, yuvarlak içinde kırp */
+    display: block;
 }
+
 
 .tm-site-logo i {
     color: rgb(51, 51, 51);
+}
+
+.tm-site-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* Ne boyutta olursa olsun ortalanıp kırpılsın */
+    display: block;
 }
 
 /* === ANA İÇERİK (MOBİL DEFAULT) === */
@@ -221,19 +228,39 @@ ul {
     color: #0A66C2;
 }
 
-/* Hamburger buton (mobil baz) */
+/* Hamburger buton – temel konum ve boyut */
 .navbar-toggler {
     display: block;
     position: fixed;
     left: 0;
     top: 5px;
-    background-color: rgba(56, 204, 204, 0.75);
-    color: white;
     padding: 10px 15px;
-    transition: all 0.3s ease;
+    border: none;
     border-radius: 0;
     z-index: 101;
-    border: none;
+    transition: all 0.3s ease;
+}
+
+/* MENÜ AÇIKKEN (varsayılan durum) */
+.navbar-toggler {
+    background-color: rgb(51, 51, 51);  /* BUTON SİYAH */
+    color: #ffffff;                     /* İKON BEYAZ */
+}
+
+.navbar-toggler:hover {
+    background-color: #ffffff;          /* HOVER'DA BEYAZ */
+    color: rgb(51, 51, 51);             /* İKON SİYAH */
+}
+
+/* MENÜ KAPALIYKEN (body.menu-collapsed varsa) */
+body.menu-collapsed .navbar-toggler {
+    background-color: #ffffff;          /* BUTON BEYAZ */
+    color: rgb(51, 51, 51);             /* İKON SİYAH */
+}
+
+body.menu-collapsed .navbar-toggler:hover {
+    background-color: rgb(51, 51, 51);  /* HOVER'DA SİYAH */
+    color: #ffffff;
 }
 
 .tm-search-form {

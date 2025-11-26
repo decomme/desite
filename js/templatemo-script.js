@@ -1,43 +1,65 @@
-// js/templatemo-script.js
 $(function () {
-    var $header   = $('.tm-header');        // Sidebar
-    var $toggler  = $('.navbar-toggler');   // Menü butonu
-    var $navLinks = $('#tm-nav .tm-nav-link');
-    var $body     = $('body');
+    var $body   = $('body');
+    var $header = $('.tm-header');
+    var $toggle = $('.navbar-toggler');
+    var MOBILE_BREAKPOINT = 992; // 992 altı = mobil
 
-    // 1) Butona tıklayınca menüyü aç/kapat
-    $toggler.on('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
+    function isMobile() {
+        return window.innerWidth < MOBILE_BREAKPOINT;
+    }
 
-        // Mobil için: .show class'ı (zaten CSS'te var)
-        $header.toggleClass('show');
+    function openMenu() {
+        $header.addClass('show');
+        $body.removeClass('menu-collapsed');
+    }
 
-        // Desktop için: body'ye menu-collapsed class'ı
-        $body.toggleClass('menu-collapsed');
+    function closeMenu() {
+        $header.removeClass('show');
+        $body.addClass('menu-collapsed');
+    }
 
-        // Butonun pozisyonu için class
-        $toggler.toggleClass('is-open');
+    function toggleMenu() {
+        if ($header.hasClass('show')) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    }
+
+    // === SAYFA İLK AÇILIŞ DURUMU ===
+    if (isMobile()) {
+        // Mobilde varsayılan: menü kapalı
+        closeMenu();
+    } else {
+        // Desktop’ta varsayılan: menü açık
+        openMenu();
+    }
+
+    // === BUTON TIKLAMA – HER YERDE GEÇERLİ ===
+    $toggle.on('click', function (e) {
+        e.stopPropagation(); // dış tıklama handler'ına gitmesin
+        toggleMenu();
     });
 
-    // 2) Menü linkine tıklanınca menüyü kapat
-    $navLinks.on('click', function () {
-        $header.removeClass('show');          // mobil
-        $body.addClass('menu-collapsed');     // desktop: kapalı hale getir
-        $toggler.removeClass('is-open');      // butonu da kapalı moda al
-    });
-
-    // 3) Header ve butonun dışına tıklayınca menüyü kapat
+    // === DIŞARI TIKLAMA: SADECE MOBİLDE MENÜ KAPANSIN ===
     $(document).on('click', function (e) {
-        var $target = $(e.target);
+        // Desktop ise hiç bir şey yapma
+        if (!isMobile()) return;
 
-        if (
-            !$target.closest('.tm-header').length &&
-            !$target.closest('.navbar-toggler').length
-        ) {
-            $header.removeClass('show');      // mobil
-            $body.addClass('menu-collapsed'); // desktop
-            $toggler.removeClass('is-open');  // buton kapalı
+        // Tıklanan yer sidebar ya da buton değilse kapat
+        if ($(e.target).closest('.tm-header, .navbar-toggler').length === 0) {
+            closeMenu();
+        }
+    });
+
+    // === EKRAN BOYUTU DEĞİŞİNCE DURUMU GÜNCELLE ===
+    $(window).on('resize', function () {
+        if (isMobile()) {
+            // mobilden bakıyorsak kapalı kalsın
+            closeMenu();
+        } else {
+            // desktop'a geçince sidebar açık, içerik sağda
+            openMenu();
         }
     });
 });
