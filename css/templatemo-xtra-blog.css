@@ -1,4 +1,11 @@
 /* TemplateMo 553 Xtra Blog https://templatemo.com/tm-553-xtra-blog */
+
+/* Layout değişkenleri */
+:root {
+    --sidebar-width: 320px;      /* Sidebar açıkken genişlik */
+    --sidebar-collapsed: 60px;   /* Menü kapalıyken solda bırakılacak alan (hamburger için) */
+}
+
 html {
     overflow-x: hidden;
 }
@@ -35,17 +42,16 @@ hr {
     color: #999;
 }
 
+/* === SIDEBAR (HEADER) === */
 .tm-header {
     background-color: rgb(51, 51, 51);
     color: white;
     position: fixed;
     top: 0;
-    left: -320px;
-    /* BAŞLANGIÇ: sidebar gizli */
+    left: -320px; /* Varsayılan: mobilde gizli */
     bottom: 0;
     z-index: 100;
     width: 320px;
-    /* Sidebar genişliği */
     overflow-y: visible;
     transition: left 0.3s ease;
 }
@@ -83,19 +89,35 @@ hr {
     color: rgb(51, 51, 51);
 }
 
+/* === ANA İÇERİK (MOBİL DEFAULT) === */
 .tm-main {
-    margin-left: 400px;
-    padding: 80px 100px 25px;
+    margin-left: 0;
+    width: 100%;
+    padding: 60px 10px 40px;
 }
 
+/* Post kartları */
 .tm-post {
     max-width: 470px;
 }
+/* Sadece post listesini grid yapıyoruz */
+.tm-row.tm-row-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px; /* Kartlar arası boşluk */
+    width: 100%;
+}
 
+
+/* Satırlar */
 .tm-row {
-    max-width: 980px;
+    width: 100%;
+    max-width: none;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
+
 
 .tm-nav {
     margin-bottom: 100px;
@@ -177,20 +199,18 @@ ul {
     color: #1877F2;
 }
 
+/* X (Twitter) özel */
 .tm-social-link:has(.fa-x-twitter):hover {
     background-color: rgb(51, 51, 51);
-    /* hover arka plan koyu */
 }
 
 .tm-social-icon.fa-x-twitter {
     color: #000000;
-    /* normalde siyah */
     transition: all 0.3s ease;
 }
 
 .tm-social-link:hover .tm-social-icon.fa-x-twitter {
     color: #ffffff;
-    /* hoverda beyaz icon */
 }
 
 .tm-social-link:hover .tm-social-icon.fa-instagram {
@@ -201,11 +221,12 @@ ul {
     color: #0A66C2;
 }
 
+/* Hamburger buton (mobil baz) */
 .navbar-toggler {
     display: block;
     position: fixed;
     left: 0;
-    top: 0;
+    top: 5px;
     background-color: rgba(56, 204, 204, 0.75);
     color: white;
     padding: 10px 15px;
@@ -619,87 +640,19 @@ a:hover figcaption {
     display: flex;
 }
 
-@media (max-width: 1540px) {
-    .tm-header {
-        width: 320px;
-    }
-
-    .tm-main {
-        margin-left: 320px;
-        width: calc(100% - 320px);
-    }
-}
-
-@media (max-width: 1300px) {
-    .tm-about-col {
-        flex: 0 0 100%;
-        max-width: 100%;
-        margin-bottom: 30px;
-    }
-}
-
-@media (max-width: 1288px) {
-    .tm-social-link {
-        margin-right: 10px;
-    }
-}
-
-@media (max-width: 1199px) {
-    .tm-post-sidebar {
-        max-width: 440px;
-    }
-
-    .form-inline .form-control.tm-search-input {
-        width: 420px;
-    }
-}
-
-@media (max-width: 1086px) {
-    .form-inline .form-control.tm-search-input {
-        width: 80%;
-        margin-right: 15px;
-    }
-}
-
-/* Hide sidebar */
-
-.tm-header {
-    width: 320px;
-    left: -320px;
-    transition: all 0.3s ease;
-}
+/* ====== HIDE SIDEBAR (MOBİL) ====== */
 
 .tm-header.show {
-    left: 0;
-    /* .show eklenince sidebar ekrana gelsin */
+    left: 0; /* Mobilde .show gelince sidebar ekrana giriyor */
 }
 
 .tm-header-wrapper {
     padding: 15px;
 }
 
-.navbar-toggler {
-    display: block;
-    position: fixed;
-    left: 0;
-    top: 0;
-    background-color: rgba(56, 204, 204, 0.75);
-    color: white;
-    padding: 10px 15px;
-    transition: all 0.3s ease;
-    border-radius: 0;
-    top: 5px;
-}
+/* .navbar-toggler zaten yukarıda tanımlı */
 
-.tm-header.show .navbar-toggler {
-    left: 320px;
-}
-
-.tm-main {
-    margin-left: 0;
-    padding: 50px 40px;
-    width: 100%;
-}
+/* Mobilde ana içerik zaten full width; ayrı .tm-main tanımlamıyoruz */
 
 .tm-post-sidebar {
     margin-left: 0;
@@ -733,52 +686,86 @@ a:hover figcaption {
    ============================ */
 @media (min-width: 992px) {
 
-    /* Header (sidebar) açık hali */
+    /* Sidebar desktop’ta hep sabit solda */
     .tm-header {
         position: fixed;
         top: 0;
         left: 0;
-        /* AÇIK HAL */
         bottom: 0;
-        width: 320px;
+        width: var(--sidebar-width);
         z-index: 100;
         transition: left 0.3s ease;
     }
 
-    /* İçerik açıkken sağda */
+    /* İçerik: sidebar genişliğine göre dinamik */
     .tm-main {
-        margin-left: 320px;
-        /* Sidebar genişliği */
-        transition: margin-left 0.3s ease;
+        margin-left: var(--sidebar-width);
+        width: calc(100% - var(--sidebar-width));
+        padding: 50px 40px 40px;
+        transition: margin-left 0.3s ease, width 0.3s ease;
     }
 
-    /* KAPALI HAL */
+    /* Menü KAPALIYKEN */
     body.menu-collapsed .tm-header {
         left: -320px;
-        /* Sidebar tamamen sola çıkar */
     }
 
-   body.menu-collapsed .tm-main {
-        margin-left: 320px;
-        /* İçerik tam genişlik */
+    body.menu-collapsed .tm-main {
+        margin-left: var(--sidebar-collapsed);
+        width: calc(100% - var(--sidebar-collapsed));
     }
 
-    /* BUTON KONUMU */
+    /* Hamburger buton konumu (sidebar içi) */
     .navbar-toggler {
-        left: 260px;
-        /* 320 yerine 260: buton sidebar'ın İÇİNDE kalır */
+        left: 260px; /* 320 yerine 260: sidebar içinde */
         top: 15px;
         z-index: 1001;
         transition: left 0.3s ease;
     }
 
     body.menu-collapsed .navbar-toggler {
-        left: 15px;
-        /* Menü KAPALIYKEN solda */
+        left: 15px; /* Menü kapalıyken ekranın solunda */
     }
 }
 
+/* =======================
+   RESPONSIVE AYARLAR
+   ======================= */
 
+@media (max-width: 1540px) {
+    /* Eski .tm-main sabitlemesi kaldırıldı, gerek yok */
+}
+
+@media (max-width: 1300px) {
+    .tm-about-col {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 1288px) {
+    .tm-social-link {
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .tm-post-sidebar {
+        max-width: 440px;
+    }
+
+    .form-inline .form-control.tm-search-input {
+        width: 420px;
+    }
+}
+
+@media (max-width: 1086px) {
+    .form-inline .form-control.tm-search-input {
+        width: 80%;
+        margin-right: 15px;
+    }
+}
 
 @media (max-width: 767px) {
     .form-inline .form-control.tm-search-input {
