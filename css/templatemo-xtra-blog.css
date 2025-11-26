@@ -903,3 +903,25 @@ a:hover figcaption {
         max-width: 120px;
     }
 }
+/* =====================
+   MOBİLDE BUTON RENKLERİ
+   ===================== */
+@media (max-width: 991px) {
+
+    /* Mobilde varsayılan (menü kapalı) */
+    body.menu-collapsed .navbar-toggler {
+        background-color: rgb(51, 51, 51) !important; /* SİYAH */
+        color: white !important;                      /* BEYAZ İKON */
+    }
+
+    body.menu-collapsed .navbar-toggler:hover {
+        background-color: white !important;           /* HOVER BEYAZ */
+        color: rgb(51, 51, 51) !important;            /* SİYAH İKON */
+    }
+
+    /* Menü mobilde açılınca (.tm-header.show) */
+    .tm-header.show ~ .navbar-toggler,
+    .tm-header.show + .navbar-toggler {
+        background-color: white !important;
+    }
+}
