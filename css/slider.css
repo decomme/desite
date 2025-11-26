@@ -1,5 +1,6 @@
-/* dE_Stun – Slider için sade CSS
-   Not: Global reset yok, sadece slider alanını etkiler. */
+/* =========================================================
+   dE_Stun - Slider FINAL (margin-left slider logic)
+   ========================================================= */
 
 /* Slider ana kap */
 #slider {
@@ -15,33 +16,32 @@
     }
 }
 
-/* Tüm slide’ları taşıyan şerit */
+/* Tüm slide’ları taşıyan şerit (margin-left ile hareket ediyor) */
 .slides {
+    width: 400%;                  /* 4 slide = 400% */
     height: 100%;
     position: relative;
-    display: flex;                      /* Slide’lar yan yana */
-    transform: translateX(0);           /* Başlangıç pozisyonu */
-    transition: transform 0.6s ease;    /* Artık margin-left değil, transform animasyonlu */
+    margin-left: 0;
+    transition: margin-left 0.6s ease; /* Geçiş animasyonu */
+    display: flex;               /* Slide’lar yan yana */
 }
 
-
+/* Her bir slide */
 .slider {
-    flex: 0 0 100%;
+    width: 100%;
     height: 100%;
     position: relative;
     overflow: hidden;
-    z-index: 1;
 }
 
-
 /* Görsel alanı */
-.image {
+.slider .image {
     width: 100%;
     height: 100%;
     position: relative;
 }
 
-.image img {
+.slider .image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -50,7 +50,7 @@
     z-index: 1;
 }
 
-/* Görsel üstüne karartma layer */
+/* Görsel üzerine koyu perde */
 .slider .image::after {
     content: "";
     position: absolute;
@@ -58,38 +58,18 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.35);  /* Koyu perde */
+    background: rgba(0,0,0,0.35);
     z-index: 2;
-}
-
-/* Sol alttaki koyu üçgen overlay */
-.legend {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    border-top: 260px solid transparent;
-    border-right: 520px solid rgba(52, 73, 94, 0.7);
-    border-bottom: 0;
-    z-index: 2;
-}
-
-@media (min-width: 992px) {
-    .legend {
-        border-top: 320px solid transparent;
-        border-right: 640px solid rgba(52, 73, 94, 0.7);
-    }
 }
 
 /* Metin alanı */
-.content {
-    width: 100%;
-    height: 100%;
+.slider .content {
     position: absolute;
     inset: 0;
+    z-index: 3;
     display: flex;
     align-items: flex-end;
-    pointer-events: none;  /* Metin alanı tıklama almasın */
-    z-index: 3;            /* Overlay’in üstünde */
+    pointer-events: none;
 }
 
 .content-txt {
@@ -102,8 +82,8 @@
     text-transform: uppercase;
     font-size: 24px;
     color: #fff;
-    text-align: left;
     margin-bottom: 10px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.8);
 }
 
 .content-txt h2 {
@@ -112,33 +92,27 @@
     font-size: 14px;
     font-style: italic;
     color: #fff;
-    text-align: left;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.8);
 }
 
-/* Slider yazılarını her fotoğrafta okunur yapmak için */
-.content-txt h1,
-.content-txt h2 {
-    text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.8);
-}
-
-/* Geçiş butonları (noktalar) */
+/* Sol alttaki nokta/dot butonları */
 .switch {
     width: auto;
     height: 10px;
     position: absolute;
     bottom: 30px;
     left: 40px;
-    z-index: 99;
+    z-index: 9;
 }
 
-.switch > ul {
+.switch ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
 }
 
-.switch > ul > li {
+.switch ul li {
     width: 12px;
     height: 12px;
     border-radius: 50%;
@@ -148,48 +122,49 @@
     transition: background 0.3s ease, transform 0.3s ease;
 }
 
-/* Aktif veya hover durum */
-.switch > ul > li.active,
-.switch > ul > li:hover {
+.switch ul li.active,
+.switch ul li:hover {
     background: #f39c12;
     transform: scale(1.15);
 }
 
-/* Eski .on div’i artık kullanılmıyor */
+/* Eski .on tamamen gizlensin */
 .switch .on {
     display: none;
 }
 
-/* === SLIDER YÖN OKLARI === */
+/* ================================
+   SLIDER YÖN OKLARI (Next / Prev)
+   ================================ */
 .slider-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     z-index: 10;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.55);
     color: #ffffff;
     border: none;
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     font-size: 20px;
     line-height: 1;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     cursor: pointer;
     transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .slider-arrow:hover {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0,0,0,0.85);
     transform: translateY(-50%) scale(1.05);
 }
 
 .slider-prev {
-    left: 10px;
+    left: 15px;
 }
 
 .slider-next {
-    right: 10px;
+    right: 15px;
 }
