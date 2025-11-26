@@ -202,6 +202,13 @@
                                 <li></li>
                             </ul>
                         </div>
+                        <!-- YÖN OKLARI -->
+                        <button class="slider-arrow slider-prev" aria-label="Önceki slayt">
+                            &#10094;
+                        </button>
+                        <button class="slider-arrow slider-next" aria-label="Sonraki slayt">
+                            &#10095;
+                        </button>
                     </div>
                 </div>
             </div>
@@ -520,6 +527,70 @@
 
     <script src="js/jquery.min.js"></script>
     <script src="js/templatemo-script.js"></script>
+    <script>
+  (function () {
+    const slider = document.getElementById('slider');
+    if (!slider) return;
+
+    const slidesWrapper = slider.querySelector('.slides');
+    const slideItems   = slider.querySelectorAll('.slider');
+    const bullets      = slider.querySelectorAll('.switch li');
+    const prevBtn      = slider.querySelector('.slider-prev');
+    const nextBtn      = slider.querySelector('.slider-next');
+
+    if (!slidesWrapper || slideItems.length === 0) return;
+
+    let currentIndex = 0;
+    const total = slideItems.length;
+
+    // Otomatik CSS animasyonu varsa patlatmasın diye:
+    slidesWrapper.style.animation = 'none';
+    slidesWrapper.style.webkitAnimation = 'none';
+    slidesWrapper.style.mozAnimation = 'none';
+
+    function goToSlide(index) {
+      if (index < 0) index = total - 1;
+      if (index >= total) index = 0;
+      currentIndex = index;
+
+      slidesWrapper.style.marginLeft = (-100 * index) + '%';
+
+      // Bullet'lara active class'ı
+      bullets.forEach((li, i) => {
+        if (i === index) {
+          li.classList.add('active');
+        } else {
+          li.classList.remove('active');
+        }
+      });
+    }
+
+    // Bullet tıklaması (mevcut küçük yuvarlaklar)
+    bullets.forEach((li, index) => {
+      li.style.cursor = 'pointer';
+      li.addEventListener('click', function () {
+        goToSlide(index);
+      });
+    });
+
+    // Ok butonları
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () {
+        goToSlide(currentIndex - 1);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        goToSlide(currentIndex + 1);
+      });
+    }
+
+    // İlk slayta konumla
+    goToSlide(0);
+  })();
+</script>
+
 </body>
 
 </html>
