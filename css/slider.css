@@ -1,0 +1,206 @@
+/* === HERO SLIDER – elements/slider.css === */
+
+/* Slider ana alanı */
+#slider{
+  width:100%;
+  height:50vh;        /* ekranın %50 yüksekliği */
+  max-height:500px;   /* masaüstünde tavan */
+  min-height:260px;   /* çok ufak ekranlarda da çökmemesi için */
+  position:relative;
+  overflow:hidden;
+  background:#000;
+}
+
+/* Tüm slide’ları taşıyan şerit */
+.slides{
+  width:400%;         /* 4 slide x %100 */
+  height:100%;
+  position:relative;
+  display:flex;
+  animation:slide 30s infinite;
+}
+
+/* Tek bir slide */
+.slider{
+  flex:0 0 25%;       /* 4 slide = 4 x 25% */
+  height:100%;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Görsel alanı */
+.image{
+  width:100%;
+  height:100%;
+}
+.image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* Eski üçgen legend yerine sade overlay */
+.legend{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,.7),
+    rgba(0,0,0,.2),
+    transparent
+  );
+  pointer-events:none;
+}
+
+/* Metin alanı */
+.content{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:flex-end;
+}
+.content-txt{
+  max-width:420px;
+  margin:0 0 30px 30px;
+  animation:content-s 7.5s infinite;
+}
+.content-txt h1{
+  font-family:Arial, sans-serif;
+  text-transform:uppercase;
+  font-size:24px;
+  color:#fff;
+  margin-bottom:8px;
+}
+.content-txt h2{
+  font-family:Arial, sans-serif;
+  font-weight:normal;
+  font-size:14px;
+  color:#f0f0f0;
+}
+
+/* Alttaki küçük noktalar (indicator) */
+.switch{
+  width:120px;
+  height:10px;
+  position:absolute;
+  bottom:20px;
+  left:30px;
+  z-index:5;
+}
+.switch > ul{
+  list-style:none;
+  overflow:hidden;
+  margin:0;
+  padding:0;
+}
+.switch > ul > li{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#333;
+  float:left;
+  margin-right:5px;
+}
+.on{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  background:#f39c12;
+  position:relative;
+  animation:on 30s infinite;
+}
+
+/* === Animasyonlar === */
+@keyframes slide{
+  0%,100%{
+    margin-left:0%;
+  }
+  21%{
+    margin-left:0%;
+  }
+  25%{
+    margin-left:-100%;
+  }
+  46%{
+    margin-left:-100%;
+  }
+  50%{
+    margin-left:-200%;
+  }
+  71%{
+    margin-left:-200%;
+  }
+  75%{
+    margin-left:-300%;
+  }
+  96%{
+    margin-left:-300%;
+  }
+}
+
+@keyframes content-s{
+  0%{
+    transform:translateX(-420px);
+  }
+  10%{
+    transform:translateX(0);
+  }
+  30%{
+    transform:translateX(0);
+  }
+  70%{
+    transform:translateX(0);
+  }
+  80%{
+    transform:translateX(-420px);
+  }
+  100%{
+    transform:translateX(-420px);
+  }
+}
+
+@keyframes on{
+  0%,100%{
+    margin-left:0%;
+  }
+  21%{
+    margin-left:0%;
+  }
+  25%{
+    margin-left:15px;
+  }
+  46%{
+    margin-left:15px;
+  }
+  50%{
+    margin-left:30px;
+  }
+  71%{
+    margin-left:30px;
+  }
+  75%{
+    margin-left:45px;
+  }
+  96%{
+    margin-left:45px;
+  }
+}
+
+/* === Basit responsive ayarlar === */
+@media (max-width:768px){
+  #slider{
+    height:40vh;
+    min-height:220px;
+  }
+  .content-txt{
+    max-width:80%;
+    margin:0 0 20px 15px;
+  }
+  .content-txt h1{
+    font-size:18px;
+  }
+  .content-txt h2{
+    font-size:12px;
+  }
+}

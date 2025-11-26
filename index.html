@@ -26,16 +26,18 @@
     <!-- CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/templatemo-xtra-blog.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/slider.css">
+
 </head>
 
 <body>
     <!-- HAMBURGER BUTON BURAYA, HEADER’IN ÜSTÜNE GELECEK -->
-<button class="navbar-toggler" type="button" aria-label="Toggle navigation">
-    <i class="fas fa-bars" aria-hidden="true"></i>
-</button>
+    <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+        <i class="fas fa-bars" aria-hidden="true"></i>
+    </button>
 
-<header class="tm-header" id="tm-header">
-    <div class="tm-header-wrapper">
+    <header class="tm-header" id="tm-header">
+        <div class="tm-header-wrapper">
 
             <div class="tm-site-header">
                 <div class="mb-3 mx-auto tm-site-logo">
@@ -52,18 +54,24 @@
                         </a>
                     </li>
 
-                    <li class="tm-nav-item"><a href="post.html" class="tm-nav-link">
+                    <li class="tm-nav-item">
+                        <a href="post.html" class="tm-nav-link">
                             <i class="fas fa-pen"></i>
                             Tüm Postlar
-                        </a></li>
-                    <li class="tm-nav-item"><a href="about.html" class="tm-nav-link">
+                        </a>
+                    </li>
+                    <li class="tm-nav-item">
+                        <a href="about.html" class="tm-nav-link">
                             <i class="fas fa-users"></i>
                             Hakkımda
-                        </a></li>
-                    <li class="tm-nav-item"><a href="contact.html" class="tm-nav-link">
+                        </a>
+                    </li>
+                    <li class="tm-nav-item">
+                        <a href="contact.html" class="tm-nav-link">
                             <i class="far fa-comments"></i>
                             İletişim
-                        </a></li>
+                        </a>
+                    </li>
                 </ul>
             </nav>
 
@@ -91,8 +99,9 @@
 
     <div class="container-fluid">
         <main class="tm-main">
-            <!-- Search form -->
-            <!-- <div class="row tm-row">
+
+            <!-- İLERİDE KULLANILACAK ARAMA FORMU (ŞİMDİLİK DEVRE DIŞI)
+            <div class="row tm-row">
                 <div class="col-12">
 
                     <form method="GET" class="form-inline tm-mb-80 tm-search-form" role="search"
@@ -110,7 +119,91 @@
                     </form>
 
                 </div>
-            </div> -->
+            </div>
+            -->
+
+            <!-- HERO SLIDER BLOĞU -->
+            <div class="row tm-row">
+                <div class="col-12">
+                    <div id="slider">
+                        <div class="slides">
+
+                            <!-- 1. SLIDE -->
+                            <div class="slider">
+                                <div class="legend"></div>
+                                <div class="content">
+                                    <div class="content-txt">
+                                        <h1>dE_Stun’a Hoş Geldin</h1>
+                                        <h2>Hayatın içinden sahneler, mizahi yorumlar ve kısa hikayeler.</h2>
+                                    </div>
+                                </div>
+                                <div class="image">
+                                    <img src="https://cdn.stocksnap.io/img-thumbs/960w/VVHE6VHMAW.jpg"
+                                        alt="dE_Stun kapak görseli">
+                                </div>
+                            </div>
+
+                            <!-- 2. SLIDE -->
+                            <div class="slider">
+                                <div class="legend"></div>
+                                <div class="content">
+                                    <div class="content-txt">
+                                        <h1>Günlük Hayata Sürpriz Bakış</h1>
+                                        <h2>Sıradan anların altındaki tuhaf, komik ve rahatsız edici detaylar.</h2>
+                                    </div>
+                                </div>
+                                <div class="image">
+                                    <img src="https://cdn.stocksnap.io/img-thumbs/960w/AKWVXIXFA8.jpg"
+                                        alt="Günlük hayat sahnesi">
+                                </div>
+                            </div>
+
+                            <!-- 3. SLIDE -->
+                            <div class="slider">
+                                <div class="legend"></div>
+                                <div class="content">
+                                    <div class="content-txt">
+                                        <h1>Kısa Hikâyeler</h1>
+                                        <h2>Uzun uzun anlatmaya üşendiğin ama kafanda dönüp duran sahneler burada.</h2>
+                                    </div>
+                                </div>
+                                <div class="image">
+                                    <img src="https://cdn.stocksnap.io/img-thumbs/960w/TPLJK7JPRR.jpg"
+                                        alt="Kısa hikaye görseli">
+                                </div>
+                            </div>
+
+                            <!-- 4. SLIDE -->
+                            <div class="slider">
+                                <div class="legend"></div>
+                                <div class="content">
+                                    <div class="content-txt">
+                                        <h1>Mizah ve Çarpılma Hali</h1>
+                                        <h2>Gülmekle sinirlenmek arasında gidip gelen bir ton, tam olması gerektiği gibi.</h2>
+                                    </div>
+                                </div>
+                                <div class="image">
+                                    <img src="https://cdn.stocksnap.io/img-thumbs/960w/XJ2BKV9ASS.jpg"
+                                        alt="Mizahi anlatım görseli">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="switch">
+                            <ul>
+                                <li>
+                                    <div class="on"></div>
+                                </li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /HERO SLIDER BLOĞU -->
 
             <div class="row tm-row">
                 <article class="col-12 col-md-6 tm-post">
@@ -321,6 +414,7 @@
                 </article>
 
             </div>
+
             <div class="row tm-row tm-mt-100 tm-mb-75">
 
                 <div class="tm-prev-next-wrapper">
@@ -373,6 +467,7 @@
 
         </main>
     </div>
+
     <script src="js/jquery.min.js"></script>
     <script src="js/templatemo-script.js"></script>
 </body>

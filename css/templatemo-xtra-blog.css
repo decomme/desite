@@ -758,8 +758,8 @@ a:hover figcaption {
         /* Sidebar tamamen sola çıkar */
     }
 
-    body.menu-collapsed .tm-main {
-        margin-left: 0;
+   body.menu-collapsed .tm-main {
+        margin-left: 320px;
         /* İçerik tam genişlik */
     }
 
