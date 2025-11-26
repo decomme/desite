@@ -40,11 +40,14 @@ hr {
     color: white;
     position: fixed;
     top: 0;
-    left: 0;
+    left: -320px;
+    /* BAŞLANGIÇ: sidebar gizli */
     bottom: 0;
     z-index: 100;
-    width: 400px;
+    width: 320px;
+    /* Sidebar genişliği */
     overflow-y: visible;
+    transition: left 0.3s ease;
 }
 
 .tm-header-wrapper {
@@ -174,17 +177,20 @@ ul {
     color: #1877F2;
 }
 
-.tm-social-link:has(.fa-x-twitter):hover{
-    background-color: rgb(51, 51, 51); /* hover arka plan koyu */
+.tm-social-link:has(.fa-x-twitter):hover {
+    background-color: rgb(51, 51, 51);
+    /* hover arka plan koyu */
 }
 
 .tm-social-icon.fa-x-twitter {
-    color: #000000; /* normalde siyah */
+    color: #000000;
+    /* normalde siyah */
     transition: all 0.3s ease;
 }
 
 .tm-social-link:hover .tm-social-icon.fa-x-twitter {
-    color: #ffffff; /* hoverda beyaz icon */
+    color: #ffffff;
+    /* hoverda beyaz icon */
 }
 
 .tm-social-link:hover .tm-social-icon.fa-instagram {
@@ -208,6 +214,7 @@ ul {
     z-index: 101;
     border: none;
 }
+
 .tm-search-form {
     display: flex;
     align-items: center;
@@ -656,69 +663,71 @@ a:hover figcaption {
 
 /* Hide sidebar */
 
-    .tm-header {
-        width: 320px;
-        left: -320px;
-        transition: all 0.3s ease;
-    }
+.tm-header {
+    width: 320px;
+    left: -320px;
+    transition: all 0.3s ease;
+}
 
-    .tm-header.show {
-        left: 0;
-    }
+.tm-header.show {
+    left: 0;
+    /* .show eklenince sidebar ekrana gelsin */
+}
 
-    .tm-header-wrapper {
-        padding: 15px;
-    }
+.tm-header-wrapper {
+    padding: 15px;
+}
 
-    .navbar-toggler {
-        display: block;
-        position: fixed;
-        left: 0;
-        top: 0;
-        background-color: rgba(56, 204, 204, 0.75);
-        color: white;
-        padding: 10px 15px;
-        transition: all 0.3s ease;
-        border-radius: 0;
-        top: 5px;
-    }
+.navbar-toggler {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(56, 204, 204, 0.75);
+    color: white;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    border-radius: 0;
+    top: 5px;
+}
 
-    .tm-header.show .navbar-toggler {
-        left: 320px;
-    }
+.tm-header.show .navbar-toggler {
+    left: 320px;
+}
 
-    .tm-main {
-        margin-left: 0;
-        padding: 50px 40px;
-        width: 100%;
-    }
+.tm-main {
+    margin-left: 0;
+    padding: 50px 40px;
+    width: 100%;
+}
 
-    .tm-post-sidebar {
-        margin-left: 0;
-        margin-right: auto;
-    }
+.tm-post-sidebar {
+    margin-left: 0;
+    margin-right: auto;
+}
 
-    .tm-person-col {
-        width: 50%;
-    }
+.tm-person-col {
+    width: 50%;
+}
 
-    .tm-person {
-        flex-direction: row;
-    }
+.tm-person {
+    flex-direction: row;
+}
 
-    .tm-contact-left {
-        flex: 0 0 58.333333%;
-        max-width: 58.333333%;
-    }
+.tm-contact-left {
+    flex: 0 0 58.333333%;
+    max-width: 58.333333%;
+}
 
-    .tm-contact-right {
-        flex: 0 0 41.666667%;
-        max-width: 41.666667%;
-    }
+.tm-contact-right {
+    flex: 0 0 41.666667%;
+    max-width: 41.666667%;
+}
 
-    .tm-post-full {
-        max-width: none;
-    }
+.tm-post-full {
+    max-width: none;
+}
+
 /* ============================
    DESKTOP MENÜ (>= 992px)
    ============================ */
@@ -730,7 +739,8 @@ a:hover figcaption {
         top: 0;
         left: 0;
         bottom: 0;
-        width: 320px;               /* Sidebar genişliği */
+        width: 320px;
+        /* Sidebar genişliği */
         z-index: 100;
         /* İstersen şunu da ekle görünür olsun diye:
         background-color: #111827;
@@ -740,17 +750,20 @@ a:hover figcaption {
 
     /* İçerik: sidebar açıkken yana kayık */
     .tm-main {
-        margin-left: 320px;         /* Sidebar genişliği kadar boşluk */
+        margin-left: 320px;
+        /* Sidebar genişliği kadar boşluk */
         transition: margin-left 0.3s ease;
     }
 
     /* Menü KAPALI iken (butona bastıktan sonra)  */
     body.menu-collapsed .tm-header {
-        left: -320px;               /* Sidebar'ı ekran dışına itiyoruz */
+        left: -320px;
+        /* Sidebar'ı ekran dışına itiyoruz */
     }
 
     body.menu-collapsed .tm-main {
-        margin-left: 0;             /* İçerik tam genişlik */
+        margin-left: 0;
+        /* İçerik tam genişlik */
     }
 }
 
