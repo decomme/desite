@@ -733,39 +733,51 @@ a:hover figcaption {
    ============================ */
 @media (min-width: 992px) {
 
-    /* Sidebar'ın normal açık hali */
+    /* Header (sidebar) açık hali */
     .tm-header {
         position: fixed;
         top: 0;
         left: 0;
+        /* AÇIK HAL */
         bottom: 0;
         width: 320px;
-        /* Sidebar genişliği */
         z-index: 100;
-        /* İstersen şunu da ekle görünür olsun diye:
-        background-color: #111827;
-        */
         transition: left 0.3s ease;
     }
 
-    /* İçerik: sidebar açıkken yana kayık */
+    /* İçerik açıkken sağda */
     .tm-main {
         margin-left: 320px;
-        /* Sidebar genişliği kadar boşluk */
+        /* Sidebar genişliği */
         transition: margin-left 0.3s ease;
     }
 
-    /* Menü KAPALI iken (butona bastıktan sonra)  */
+    /* KAPALI HAL */
     body.menu-collapsed .tm-header {
         left: -320px;
-        /* Sidebar'ı ekran dışına itiyoruz */
+        /* Sidebar tamamen sola çıkar */
     }
 
     body.menu-collapsed .tm-main {
         margin-left: 0;
         /* İçerik tam genişlik */
     }
+
+    /* BUTON KONUMU */
+    .navbar-toggler {
+        left: 260px;
+        /* 320 yerine 260: buton sidebar'ın İÇİNDE kalır */
+        top: 15px;
+        z-index: 1001;
+        transition: left 0.3s ease;
+    }
+
+    body.menu-collapsed .navbar-toggler {
+        left: 15px;
+        /* Menü KAPALIYKEN solda */
+    }
 }
+
 
 
 @media (max-width: 767px) {
