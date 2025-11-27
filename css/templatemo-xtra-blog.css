@@ -113,6 +113,20 @@ hr {
 .tm-post {
     max-width: 470px;
 }
+/* Blog kartlarındaki özet paragrafları aynı uzunlukta göster */
+.tm-post .tm-pt-30 {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;      /* GÖSTERİLECEK SATIR SAYISI */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+/* Kartların yüksekliğini eşitlemek için flex kullan */
+.tm-post {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 
 /* Sadece post listesini grid yapıyoruz */
 .tm-row.tm-row-posts {
@@ -737,7 +751,24 @@ a:hover figcaption {
 
 .tm-post-full {
     max-width: none;
+}/* ABOUT SAYFASI GÖRSELİ – SLIDER DAVRANIŞI */
+.about-image-wrapper {
+    width: 100%;
+    height: 60vh;              /* Slider gibi dinamik yükseklik */
+    min-height: 350px;         /* Küçük ekranlarda minimum yükseklik */
+    max-height: 800px;         /* Büyük monitörlerde aşırı büyümesin */
+    overflow: hidden;
+    position: relative;
 }
+
+.about-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;         /* Slider efekti */
+    object-position: center;   /* Ortala */
+    display: block;
+}
+
 
 /* ============================
    DESKTOP MENÜ (>= 992px)
